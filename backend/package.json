@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "dev": "ts-node index.ts",
+    "build": "tsc && vite build",
     "test": "jest --watch",
     "start": "nodemon index.ts"
   },

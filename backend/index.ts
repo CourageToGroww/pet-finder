@@ -1,15 +1,29 @@
 // import the pets array from data.js
-import pets from "./data";
+import { pets } from "./data";
+import path from "path";
+
+export interface Pet {
+  id: number;
+  name: string;
+  breed: string;
+  age: number;
+  owner: string;
+  telephone: string;
+  appointments: Array<{ date: string; time: string; reason: string }>;
+}
 
 // init express app
 import express, { Request, Response } from "express";
 const app = express();
 
+app.use(express.static(path.join(__dirname, "../app/dist")));
+
 const PORT = 8080;
 
 // GET - / - returns homepage
 app.get("/", (req: Request, res: Response) => {
-  // serve up the public folder as static index.html file
+  // serve public folder as static index.html file
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 // hello world route
@@ -20,6 +34,7 @@ app.get("/api", (req: Request, res: Response) => {
 // get all pets from the database
 app.get("/api/v1/pets", (req: Request, res: Response) => {
   // send the pets array as a response
+  res.json(pets);
 });
 
 // get pet by name
@@ -28,7 +43,7 @@ app.get("/api/v1/pets/:name", (req: Request, res: Response) => {
   const name = req.params.name;
 
   // find the pet in the pets array
-  const pet = pets.find((pet) => pet.name === name);
+  const pet = pets.find((pet: Pet) => pet.name === name);
 
   // send the pet as a response
   res.json(pet);
