@@ -27,15 +27,22 @@ export const Pets: React.FC = () => {
   }, []);
 
   return (
-    <div className="text-center text-gray-800 bg-gray-100 p-8">
+    <div className="text-center text-gray-800 bg-orange-300 p-8">
       {pets.map((pet) => (
-        <div key={pet.id} className="bg-white p-6 rounded-lg shadow-lg mb-8">
-          <h1 className="text-2xl font-bold mb-4">{pet.name}</h1>
+        <div
+          key={pet.id}
+          className="bg-purple-300 p-6 rounded-lg shadow-lg mb-8"
+        >
+          <h2 className="text-xl font-bold mb-4 text-green-500 inline-block p-2 rounded">
+            {pet.name}
+          </h2>
           <p className="text-lg">Breed: {pet.breed}</p>
           <p className="text-lg">Age: {pet.age}</p>
           <p className="text-lg">Owner: {pet.owner}</p>
           <p className="text-lg">Telephone: {pet.telephone}</p>
-          <h3 className="text-xl font-semibold mt-4 mb-2">Appointments:</h3>
+          <h2 className="text-xl font-semibold mt-4 mb-2 text-purple-500">
+            Appointment:
+          </h2>
           {pet.appointments.map((appointment, i) => (
             <div key={i} className="text-base">
               <p>Date: {appointment.date}</p>
